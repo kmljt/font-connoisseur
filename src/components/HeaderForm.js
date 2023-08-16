@@ -3,6 +3,8 @@ import {
   IconItalic,
   IconTypography,
   IconCirclePlus,
+  IconSun,
+  IconMoonStars,
 } from '@tabler/icons-react';
 
 export default function HeaderForm({
@@ -17,6 +19,8 @@ export default function HeaderForm({
   fontStyle,
   setFontStyle,
   handleSubmit,
+  isDark,
+  toggleColorScheme,
 }) {
   const MARKS = Array.from({ length: 9 }, (el, i) => (i + 1) * 100).map(
     (i) => ({ value: i, label: String(i) })
@@ -45,7 +49,10 @@ export default function HeaderForm({
         }}
       />
       <div>
-        <label className="mantine-1fzet7j" for="font-size">
+        <label
+          className={isDark ? 'mantine-1mo4y8r' : 'mantine-1fzet7j'}
+          for="font-size"
+        >
           Font Size
         </label>
         <Slider
@@ -99,7 +106,10 @@ export default function HeaderForm({
       </form>
 
       <div>
-        <label className="mantine-1fzet7j" for="font-weight">
+        <label
+          className={isDark ? 'mantine-1mo4y8r' : 'mantine-1fzet7j'}
+          for="font-weight"
+        >
           Font Weight
         </label>
         <Slider
@@ -140,6 +150,17 @@ export default function HeaderForm({
         value={fontStyle}
         onChange={(e) => setFontStyle(e)}
       />
+      <ActionIcon
+        color="orange"
+        size="lg"
+        radius="xl"
+        variant="subtle"
+        mt={26}
+        onClick={() => toggleColorScheme()}
+        title="Toggle color scheme"
+      >
+        {isDark ? <IconSun size="1.7rem" /> : <IconMoonStars size="1.7rem" />}
+      </ActionIcon>
     </Flex>
   );
 }

@@ -1,4 +1,4 @@
-import { MantineProvider, Container } from '@mantine/core';
+import { MantineProvider, Container, ColorSchemeProvider } from '@mantine/core';
 import { ReactComponent as Logo } from '../logo.svg';
 import '../index.css';
 import { useEffect, useState } from 'react';
@@ -49,64 +49,90 @@ export default function App() {
     setFonts((fonts) => fonts.filter((f) => f !== font));
   }
 
+  const [colorScheme, setColorScheme] = useState('light');
+  const toggleColorScheme = (value) =>
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
+  const isDark = colorScheme === 'dark';
+
+  const clrs = {
+    light: ['hsl(17, 82%, 94%)', 'hsl(17, 68%, 82%)', 'hsl(17, 40%, 21%)'],
+    // dark: ['hsl(265, 50%, 15%)', 'hsl(265, 40%, 30%)', 'hsl(265, 90%, 90%)'],
+    dark: ['hsl(265, 0%, 15%)', 'hsl(265, 0%, 50%)', 'hsl(17, 90%, 90%)'],
+  };
+
   return (
-    <MantineProvider
-      withGlobalStyles
-      withNormalizeCSS
-      theme={{
-        components: {
-          TextInput: {
-            styles: () => ({
-              input: {
-                backgroundColor: 'hsl(17, 68%, 82%)',
-                color: 'hsl(17, 40%, 21%)',
-              },
-              icon: { color: 'hsl(17, 82%, 94%)' },
-            }),
-          },
-          Select: {
-            styles: () => ({
-              input: {
-                backgroundColor: 'hsl(17, 68%, 82%)',
-                color: 'hsl(17, 40%, 21%)',
-              },
-              icon: { color: 'hsl(17, 82%, 94%)' },
-            }),
-          },
-        },
-      }}
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
     >
-      <Container size="xxl">
-        <div style={{ textAlign: 'center' }}>
-          <Logo
-            style={{
-              margin: 20,
-              height: 40,
-            }}
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          colorScheme: colorScheme,
+          components: {
+            TextInput: {
+              styles: () => ({
+                input: {
+                  backgroundColor: isDark ? clrs.dark[1] : clrs.light[1],
+                  color: isDark ? clrs.dark[2] : clrs.light[2],
+                },
+                icon: { color: isDark ? clrs.dark[0] : clrs.light[0] },
+              }),
+            },
+            Select: {
+              styles: () => ({
+                input: {
+                  backgroundColor: isDark ? clrs.dark[1] : clrs.light[1],
+                  color: isDark ? clrs.dark[2] : clrs.light[2],
+                },
+                icon: { color: isDark ? clrs.dark[0] : clrs.light[0] },
+              }),
+            },
+          },
+        }}
+      >
+        <Container
+          size="xxl"
+          className={isDark ? 'custom-dark' : 'custom-light'}
+        >
+          <div style={{ textAlign: 'center' }}>
+            <Logo
+              style={{
+                margin: 20,
+                height: 40,
+              }}
+            />
+          </div>
+
+          <HeaderForm
+            text={text}
+            setText={setText}
+            fontSize={fontSize}
+            setFontSize={setFontSize}
+            fontFamily={fontFamily}
+            setFontFamily={setFontFamily}
+            fontWeight={fontWeight}
+            setFontWeight={setFontWeight}
+            fontStyle={fontStyle}
+            setFontStyle={setFontStyle}
+            handleSubmit={handleSubmit}
+            isDark={isDark}
+            toggleColorScheme={toggleColorScheme}
           />
-        </div>
-        <HeaderForm
-          text={text}
-          setText={setText}
-          fontSize={fontSize}
-          setFontSize={setFontSize}
-          fontFamily={fontFamily}
-          setFontFamily={setFontFamily}
-          fontWeight={fontWeight}
-          setFontWeight={setFontWeight}
-          fontStyle={fontStyle}
-          setFontStyle={setFontStyle}
-          handleSubmit={handleSubmit}
-        />
-        <Main
-          fonts={fonts}
-          text={text}
-          fontSize={fontSize}
-          fontWeight={fontWeight}
-          fontStyle={fontStyle}
-          handleDelete={handleDelete}
-        />
-      </Container>
-    </MantineProvider>
+          <Main
+            fonts={fonts}
+            text={text}
+            fontSize={fontSize}
+            fontWeight={fontWeight}
+            fontStyle={fontStyle}
+            handleDelete={handleDelete}
+            clrs={clrs}
+            isDark={isDark}
+          />
+        </Container>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }

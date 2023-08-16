@@ -7,6 +7,8 @@ export default function Main({
   fontWeight,
   fontStyle,
   handleDelete,
+  clrs,
+  isDark,
 }) {
   return (
     <>
@@ -18,6 +20,8 @@ export default function Main({
           fontWeight={fontWeight}
           fontStyle={fontStyle}
           handleDelete={handleDelete}
+          clrs={clrs}
+          isDark={isDark}
         />
       ))}
     </>

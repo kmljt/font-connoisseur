@@ -7,15 +7,17 @@ export default function Font({
   fontWeight,
   fontStyle,
   handleDelete,
+  clrs,
+  isDark,
 }) {
   return (
     <Container
       size="xxl"
       sx={{
-        borderRadius: '80px',
-        padding: '50px 80px 60px 80px',
-        margin: '30px 40px',
-        backgroundColor: 'hsl(17, 82%, 94%)',
+        borderRadius: fontSize > 70 ? '80px' : '40px',
+        padding: fontSize > 70 ? '50px 80px 60px 80px' : '25px 40px 30px 40px',
+        margin: fontSize > 70 ? '30px 40px' : '10px 0px',
+        backgroundColor: isDark ? clrs.dark[0] : clrs.light[0],
       }}
     >
       <Flex direction="row" align="center" justify="space-between">
@@ -25,19 +27,23 @@ export default function Font({
             // fontSize: fontSize * 0.5,
             fontWeight: fontSize > 70 ? 100 : 400,
             margin: 0,
-            color: 'hsl(17, 40%, 21%)',
+            color: isDark ? clrs.dark[2] : clrs.light[2],
           }}
         >
           {fontFamily}
         </p>
         <ActionIcon
           color="gray"
-          size="md"
+          size={fontSize > 70 ? 'lg' : 'md'}
           radius="xl"
           variant="subtle"
           onClick={() => handleDelete(fontFamily)}
         >
-          <CloseButton title="Remove This Font" size="lg" iconSize={25} />
+          <CloseButton
+            title="Remove This Font"
+            size={fontSize > 70 ? 'md' : 'sm'}
+            iconSize={25}
+          />
         </ActionIcon>
       </Flex>
       <h1
@@ -48,7 +54,7 @@ export default function Font({
           fontStyle: fontStyle,
           margin: 0,
           lineHeight: 1.1,
-          color: 'hsl(17, 40%, 21%)',
+          color: isDark ? clrs.dark[2] : clrs.light[2],
         }}
       >
         {text}

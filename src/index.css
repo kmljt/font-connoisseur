@@ -2,14 +2,45 @@
   font-family: 'JetBrains Mono';
 }
 
+.custom-light {
+  background-color: white;
+  height: 100vh;
+  --background: hsl(17, 82%, 94%);
+  --input: hsl(17, 68%, 82%);
+  --color: hsl(17, 40%, 21%);
+}
+
+.custom-dark {
+  background-color: black;
+  height: 100vh;
+  /* --background: hsl(265, 50%, 15%);
+  --input: hsl(265, 40%, 30%);
+  --color: hsl(265, 90%, 90%); */
+  --background: hsl(265, 0%, 15%);
+  --input: hsl(17, 0%, 50%);
+  --color: hsl(17, 90%, 90%);
+}
+
+.cls-1 {
+  fill: var(--color);
+  stroke-width: 0px;
+}
+
+.cls-2 {
+  fill: none;
+  stroke: var(--color);
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
+}
+
 .mantine-Slider-bar {
-  background-color: hsl(17, 68%, 82%);
+  background-color: var(--input);
 }
 
 .mantine-Slider-thumb {
-  background-color: hsl(17, 40%, 21%);
-  border-color: hsl(17, 40%, 21%);
-  color: hsl(17, 40%, 21%);
+  background-color: var(--color);
+  border-color: var(--color);
+  color: var(--color);
 }
 
 .mantine-Input-input {
@@ -17,21 +48,21 @@
 }
 
 .mantine-Input-input::placeholder {
-  color: hsl(17, 82%, 94%);
+  color: var(--background);
   font-family: 'Poppins';
 }
 
 .mantine-Input-input:focus {
-  border-color: hsl(17, 40%, 21%);
+  border-color: var(--color);
 }
 
 .mantine-ActionIcon-root {
-  color: hsl(17, 40%, 21%);
+  color: var(--color);
 }
 
 .mantine-Slider-label {
-  color: hsl(17, 82%, 94%);
-  background-color: hsl(17, 40%, 21%);
+  color: var(--background);
+  background-color: var(--color);
 }
 
 .mantine-Slider-markLabel {
@@ -39,8 +70,9 @@
 }
 
 .mantine-Select-itemsWrapper {
-  background-color: hsl(17, 82%, 94%);
+  background-color: var(--background);
 }
+
 .mantine-Select-item {
   font-family: 'JetBrains Mono';
   font-size: small;
@@ -48,5 +80,5 @@
 
 .mantine-Select-item[data-selected='true'],
 .mantine-Select-item[data-selected='true']:hover {
-  background-color: hsl(17, 68%, 82%);
+  background-color: var(--input);
 }
