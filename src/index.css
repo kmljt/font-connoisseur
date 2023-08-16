@@ -1,13 +1,52 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  font-family: 'JetBrains Mono';
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.mantine-Slider-bar {
+  background-color: hsl(17, 68%, 82%);
+}
+
+.mantine-Slider-thumb {
+  background-color: hsl(17, 40%, 21%);
+  border-color: hsl(17, 40%, 21%);
+  color: hsl(17, 40%, 21%);
+}
+
+.mantine-Input-input {
+  font-family: 'Poppins';
+}
+
+.mantine-Input-input::placeholder {
+  color: hsl(17, 82%, 94%);
+  font-family: 'Poppins';
+}
+
+.mantine-Input-input:focus {
+  border-color: hsl(17, 40%, 21%);
+}
+
+.mantine-ActionIcon-root {
+  color: hsl(17, 40%, 21%);
+}
+
+.mantine-Slider-label {
+  color: hsl(17, 82%, 94%);
+  background-color: hsl(17, 40%, 21%);
+}
+
+.mantine-Slider-markLabel {
+  font-size: 10px;
+}
+
+.mantine-Select-itemsWrapper {
+  background-color: hsl(17, 82%, 94%);
+}
+.mantine-Select-item {
+  font-family: 'JetBrains Mono';
+  font-size: small;
+}
+
+.mantine-Select-item[data-selected='true'],
+.mantine-Select-item[data-selected='true']:hover {
+  background-color: hsl(17, 68%, 82%);
 }
