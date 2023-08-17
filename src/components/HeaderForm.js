@@ -5,6 +5,7 @@ import {
   IconCirclePlus,
   IconSun,
   IconMoonStars,
+  IconCursorText,
 } from '@tabler/icons-react';
 
 export default function HeaderForm({
@@ -21,18 +22,20 @@ export default function HeaderForm({
   handleSubmit,
   isDark,
   toggleColorScheme,
+  fontList,
+  toTitleCase,
 }) {
-  const MARKS = Array.from({ length: 9 }, (el, i) => (i + 1) * 100).map(
-    (i) => ({ value: i, label: String(i) })
-  );
+  // const MARKS = Array.from({ length: 9 }, (el, i) => (i + 1) * 100).map(
+  //   (i) => ({ value: i, label: String(i) })
+  // );
   return (
     <Flex
       direction={{ base: 'column', md: 'row' }}
       gap={{ base: 'sm', md: 'lg' }}
-      justify={{ base: 'center', md: 'center' }}
+      justify="center"
       align="center"
       wrap="nowrap"
-      sx={{ paddingBottom: 30 }}
+      sx={{ paddingBottom: 30, textAlign: 'center' }}
     >
       <TextInput
         w={{ base: 350, md: 250, xl: 400 }}
@@ -41,7 +44,7 @@ export default function HeaderForm({
         variant="filled"
         radius="xl"
         size="sm"
-        icon={<IconTypography size="1rem" />}
+        icon={<IconCursorText size="1rem" />}
         value={text}
         onChange={(e) => {
           setText(e.target.value);
@@ -58,19 +61,19 @@ export default function HeaderForm({
         <Slider
           id="font-size"
           w={{ base: 350, md: 100, lg: 200 }}
-          py={7}
+          py={11}
           defaultValue={150}
           min={1}
-          max={200}
+          max={300}
           step={1}
-          size="lg"
+          size="sm"
           radius="xl"
           color="dark"
-          marks={[
-            { value: 40, label: '40' },
-            { value: 100, label: '100' },
-            { value: 160, label: '160' },
-          ]}
+          // marks={[
+          //   { value: 40, label: '40' },
+          //   { value: 100, label: '100' },
+          //   { value: 160, label: '160' },
+          // ]}
           labelTransition="skew-down"
           labelTransitionDuration={150}
           labelTransitionTimingFunction="ease"
@@ -82,13 +85,22 @@ export default function HeaderForm({
         />
       </div>
       <form onSubmit={handleSubmit}>
-        <TextInput
+        <Select
           w={{ base: 350, md: 250 }}
           label="Font Family"
-          placeholder="Enter your favorite font!"
+          placeholder={`Choose from ${fontList.length} Google fonts`}
           variant="filled"
           radius="xl"
           size="sm"
+          searchable
+          allowDeselect
+          nothingFound="No options"
+          maxDropdownHeight={280}
+          data={fontList.map((i) => ({
+            value: i[0],
+            label: i[0],
+            group: toTitleCase(i[1]),
+          }))}
           icon={<IconTypography size="1rem" />}
           rightSection={
             <button
@@ -101,7 +113,12 @@ export default function HeaderForm({
             </button>
           }
           value={fontFamily}
-          onChange={(e) => setFontFamily(e.target.value)}
+          onChange={(e) => setFontFamily(e)}
+          // onDropdownOpen={() =>
+          //   setTimeout(() => {
+          //     debugger;
+          //   }, 5000)
+          // }
         />
       </form>
 
@@ -116,14 +133,14 @@ export default function HeaderForm({
           id="font-weight"
           w={{ base: 350, md: 100, lg: 200 }}
           color="dark"
-          py={7}
+          py={11}
           defaultValue={400}
           min={100}
           max={900}
           step={100}
-          size="lg"
+          size="sm"
           radius="xl"
-          marks={MARKS}
+          // marks={MARKS}
           styles={{ markLabel: { display: 'none' } }}
           labelTransition="skew-down"
           labelTransitionDuration={150}
@@ -155,7 +172,7 @@ export default function HeaderForm({
         size="lg"
         radius="xl"
         variant="subtle"
-        mt={26}
+        mt={30}
         onClick={() => toggleColorScheme()}
         title="Toggle color scheme"
       >

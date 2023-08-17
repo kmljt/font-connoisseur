@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from '../logo.svg';
 import '../index.css';
 import { useEffect, useState } from 'react';
 import WebFont from 'webfontloader';
+import data from '../google-fonts.json';
 
 import Main from './Main';
 import HeaderForm from './HeaderForm';
@@ -11,10 +12,12 @@ export default function App() {
   const [fonts, setFonts] = useState([]);
 
   const [text, setText] = useState('');
-  const [fontSize, setFontSize] = useState(150);
+  const [fontSize, setFontSize] = useState(65);
   const [fontFamily, setFontFamily] = useState('');
   const [fontWeight, setFontWeight] = useState(400);
   const [fontStyle, setFontStyle] = useState('Normal');
+
+  const fontList = data.items.map((i) => [i.family, i.category]);
 
   useEffect(() => {
     WebFont.load({
@@ -56,9 +59,18 @@ export default function App() {
   const isDark = colorScheme === 'dark';
 
   const clrs = {
-    light: ['hsl(17, 82%, 94%)', 'hsl(17, 68%, 82%)', 'hsl(17, 40%, 21%)'],
-    // dark: ['hsl(265, 50%, 15%)', 'hsl(265, 40%, 30%)', 'hsl(265, 90%, 90%)'],
-    dark: ['hsl(265, 0%, 15%)', 'hsl(265, 0%, 50%)', 'hsl(17, 90%, 90%)'],
+    light: [
+      'hsl(17, 82%, 94%)',
+      'hsl(17, 68%, 82%)',
+      'hsl(17, 40%, 21%)',
+      'hsl(17, 23%, 62%)',
+    ],
+    dark: [
+      'hsl(18, 17%, 15%)',
+      'hsl(14, 19%, 49%)',
+      'hsl(18, 86%, 95%)',
+      'hsl(11, 37%, 62%)',
+    ],
   };
 
   return (
@@ -78,7 +90,7 @@ export default function App() {
                   backgroundColor: isDark ? clrs.dark[1] : clrs.light[1],
                   color: isDark ? clrs.dark[2] : clrs.light[2],
                 },
-                icon: { color: isDark ? clrs.dark[0] : clrs.light[0] },
+                icon: { color: isDark ? clrs.dark[2] : clrs.light[2] },
               }),
             },
             Select: {
@@ -87,7 +99,7 @@ export default function App() {
                   backgroundColor: isDark ? clrs.dark[1] : clrs.light[1],
                   color: isDark ? clrs.dark[2] : clrs.light[2],
                 },
-                icon: { color: isDark ? clrs.dark[0] : clrs.light[0] },
+                icon: { color: isDark ? clrs.dark[2] : clrs.light[2] },
               }),
             },
           },
@@ -120,6 +132,8 @@ export default function App() {
             handleSubmit={handleSubmit}
             isDark={isDark}
             toggleColorScheme={toggleColorScheme}
+            fontList={fontList}
+            toTitleCase={toTitleCase}
           />
           <Main
             fonts={fonts}
@@ -130,6 +144,7 @@ export default function App() {
             handleDelete={handleDelete}
             clrs={clrs}
             isDark={isDark}
+            fontList={fontList}
           />
         </Container>
       </MantineProvider>

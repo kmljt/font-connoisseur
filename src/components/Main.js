@@ -9,6 +9,7 @@ export default function Main({
   handleDelete,
   clrs,
   isDark,
+  fontList,
 }) {
   return (
     <>
@@ -22,6 +23,7 @@ export default function Main({
           handleDelete={handleDelete}
           clrs={clrs}
           isDark={isDark}
+          fontList={fontList}
         />
       ))}
     </>

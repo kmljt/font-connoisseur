@@ -9,6 +9,7 @@ export default function Font({
   handleDelete,
   clrs,
   isDark,
+  fontList,
 }) {
   return (
     <Container
@@ -23,14 +24,28 @@ export default function Font({
       <Flex direction="row" align="center" justify="space-between">
         <p
           style={{
-            fontSize: fontSize > 70 ? 28 : 14,
+            fontSize: fontSize > 70 ? 24 : 14,
             // fontSize: fontSize * 0.5,
             fontWeight: fontSize > 70 ? 100 : 400,
             margin: 0,
             color: isDark ? clrs.dark[2] : clrs.light[2],
           }}
         >
-          {fontFamily}
+          <span className="font-name">{fontFamily}</span>
+          <span style={{ margin: 8 }}>•</span>
+          <span
+            style={{
+              fontWeight: 400,
+              position: 'relative',
+              top: fontSize > 70 ? -4 : -2,
+              fontSize: fontSize > 70 ? 'small' : 'xx-small',
+              textTransform: 'uppercase',
+              letterSpacing: 4,
+              color: isDark ? clrs.dark[3] : clrs.light[3],
+            }}
+          >
+            {fontList.find(([font, _]) => font === fontFamily)[1]}
+          </span>
         </p>
         <ActionIcon
           color="gray"
