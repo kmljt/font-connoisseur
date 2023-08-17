@@ -3,7 +3,8 @@ import { ReactComponent as Logo } from '../logo.svg';
 import '../index.css';
 import { useEffect, useState } from 'react';
 import WebFont from 'webfontloader';
-import data from '../google-fonts.json';
+import fontList from '../google-fonts.json';
+// const fontList = data.items.map((i) => [i.family, i.category]);
 
 import Main from './Main';
 import HeaderForm from './HeaderForm';
@@ -17,7 +18,10 @@ export default function App() {
   const [fontWeight, setFontWeight] = useState(400);
   const [fontStyle, setFontStyle] = useState('Normal');
 
-  const fontList = data.items.map((i) => [i.family, i.category]);
+  const fontsWithCat = fonts.map((font) => [
+    font,
+    fontList.find(([f, _]) => f === font)[1],
+  ]);
 
   useEffect(() => {
     WebFont.load({
@@ -136,7 +140,7 @@ export default function App() {
             toTitleCase={toTitleCase}
           />
           <Main
-            fonts={fonts}
+            fontsWithCat={fontsWithCat}
             text={text}
             fontSize={fontSize}
             fontWeight={fontWeight}
@@ -144,7 +148,6 @@ export default function App() {
             handleDelete={handleDelete}
             clrs={clrs}
             isDark={isDark}
-            fontList={fontList}
           />
         </Container>
       </MantineProvider>

@@ -4,12 +4,12 @@ export default function Font({
   text,
   fontSize,
   fontFamily,
+  fontCategory,
   fontWeight,
   fontStyle,
   handleDelete,
   clrs,
   isDark,
-  fontList,
 }) {
   return (
     <Container
@@ -44,7 +44,7 @@ export default function Font({
               color: isDark ? clrs.dark[3] : clrs.light[3],
             }}
           >
-            {fontList.find(([font, _]) => font === fontFamily)[1]}
+            {fontCategory}
           </span>
         </p>
         <ActionIcon

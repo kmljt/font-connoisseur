@@ -1,7 +1,7 @@
 import Font from './Font';
 
 export default function Main({
-  fonts,
+  fontsWithCat,
   text,
   fontSize,
   fontWeight,
@@ -9,21 +9,20 @@ export default function Main({
   handleDelete,
   clrs,
   isDark,
-  fontList,
 }) {
   return (
     <>
-      {fonts.map((font) => (
+      {fontsWithCat.map(([font, category]) => (
         <Font
           text={text}
           fontSize={fontSize}
           fontFamily={font}
+          fontCategory={category}
           fontWeight={fontWeight}
           fontStyle={fontStyle}
           handleDelete={handleDelete}
           clrs={clrs}
           isDark={isDark}
-          fontList={fontList}
         />
       ))}
     </>
