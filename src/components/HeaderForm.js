@@ -24,6 +24,8 @@ export default function HeaderForm({
   toggleColorScheme,
   fontList,
   toTitleCase,
+  withCustomFonts,
+  setWithCustomFonts,
 }) {
   // const MARKS = Array.from({ length: 9 }, (el, i) => (i + 1) * 100).map(
   //   (i) => ({ value: i, label: String(i) })
@@ -88,7 +90,7 @@ export default function HeaderForm({
         <Select
           w={{ base: 350, md: 250 }}
           label="Font Family"
-          placeholder={`Choose from ${fontList.length} Google fonts`}
+          placeholder={`${fontList.length} Google fonts`}
           variant="filled"
           radius="xl"
           size="sm"
@@ -96,11 +98,7 @@ export default function HeaderForm({
           allowDeselect
           nothingFound="No options"
           maxDropdownHeight={280}
-          data={fontList.map((i) => ({
-            value: i[0],
-            label: i[0],
-            group: toTitleCase(i[1]),
-          }))}
+          data={withCustomFonts}
           icon={<IconTypography size="1rem" />}
           rightSection={
             <button
@@ -119,6 +117,17 @@ export default function HeaderForm({
           //     debugger;
           //   }, 5000)
           // }
+          creatable
+          getCreateLabel={(query) => `+ Create ${toTitleCase(query)}`}
+          onCreate={(query) => {
+            const item = {
+              value: toTitleCase(query),
+              label: toTitleCase(query),
+              group: 'Custom',
+            };
+            setWithCustomFonts((current) => [...current, item]);
+            return item;
+          }}
         />
       </form>
 

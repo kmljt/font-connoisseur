@@ -20,8 +20,16 @@ export default function App() {
 
   const fontsWithCat = fonts.map((font) => [
     font,
-    fontList.find(([f, _]) => f === font)[1],
+    fontList.find(([f, _]) => f === font)?.[1] ?? 'Custom',
   ]);
+
+  const [withCustomFonts, setWithCustomFonts] = useState(
+    fontList.map((i) => ({
+      value: i[0],
+      label: i[0],
+      group: toTitleCase(i[1]),
+    }))
+  );
 
   useEffect(() => {
     WebFont.load({
@@ -138,6 +146,8 @@ export default function App() {
             toggleColorScheme={toggleColorScheme}
             fontList={fontList}
             toTitleCase={toTitleCase}
+            withCustomFonts={withCustomFonts}
+            setWithCustomFonts={setWithCustomFonts}
           />
           <Main
             fontsWithCat={fontsWithCat}
