@@ -26,12 +26,14 @@ export default function Font({
           style={{
             fontSize: fontSize > 70 ? 24 : 14,
             // fontSize: fontSize * 0.5,
-            fontWeight: fontSize > 70 ? 100 : 400,
+            fontWeight: fontSize > 70 ? 200 : 400,
             margin: 0,
             color: isDark ? clrs.dark[2] : clrs.light[2],
           }}
         >
-          <span className="font-name">{fontFamily}</span>
+          <span className="font-name" style={{ fontFamily: 'Poppins' }}>
+            {fontFamily}
+          </span>
           <span style={{ margin: 8 }}>•</span>
           <span
             style={{
@@ -64,7 +66,7 @@ export default function Font({
       <h1
         style={{
           fontSize: fontSize,
-          fontFamily: fontFamily,
+          fontFamily: `"${fontFamily}"`,
           fontWeight: fontWeight,
           fontStyle: fontStyle,
           margin: 0,

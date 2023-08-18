@@ -11,7 +11,7 @@ export default function Main({
   isDark,
 }) {
   return (
-    <>
+    <main className="fonts-container" style={{ paddingBottom: 70 }}>
       {fontsWithCat.map(([font, category]) => (
         <Font
           text={text}
@@ -25,6 +25,6 @@ export default function Main({
           isDark={isDark}
         />
       ))}
-    </>
+    </main>
   );
 }

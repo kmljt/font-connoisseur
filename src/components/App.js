@@ -45,7 +45,7 @@ export default function App() {
   function toTitleCase(str) {
     return str
       .split(' ')
-      .map((i) => i[0].toUpperCase() + i.slice(1))
+      .map((i) => (i ? i[0].toUpperCase() + i.slice(1) : i))
       .join(' ');
   }
 
@@ -77,10 +77,16 @@ export default function App() {
       'hsl(17, 40%, 21%)',
       'hsl(17, 23%, 62%)',
     ],
+    // dark: [
+    //   'hsl(18, 17%, 15%)',
+    //   'hsl(14, 19%, 49%)',
+    //   'hsl(18, 86%, 95%)',
+    //   'hsl(11, 37%, 62%)',
+    // ],
     dark: [
       'hsl(18, 17%, 15%)',
-      'hsl(14, 19%, 49%)',
-      'hsl(18, 86%, 95%)',
+      'hsl(13, 20%, 32%)',
+      'hsl(16, 100%, 88%)',
       'hsl(11, 37%, 62%)',
     ],
   };
@@ -121,34 +127,33 @@ export default function App() {
           size="xxl"
           className={isDark ? 'custom-dark' : 'custom-light'}
         >
-          <div style={{ textAlign: 'center' }}>
+          <header style={{ textAlign: 'center' }}>
             <Logo
               style={{
                 margin: 20,
                 height: 40,
               }}
             />
-          </div>
-
-          <HeaderForm
-            text={text}
-            setText={setText}
-            fontSize={fontSize}
-            setFontSize={setFontSize}
-            fontFamily={fontFamily}
-            setFontFamily={setFontFamily}
-            fontWeight={fontWeight}
-            setFontWeight={setFontWeight}
-            fontStyle={fontStyle}
-            setFontStyle={setFontStyle}
-            handleSubmit={handleSubmit}
-            isDark={isDark}
-            toggleColorScheme={toggleColorScheme}
-            fontList={fontList}
-            toTitleCase={toTitleCase}
-            withCustomFonts={withCustomFonts}
-            setWithCustomFonts={setWithCustomFonts}
-          />
+            <HeaderForm
+              text={text}
+              setText={setText}
+              fontSize={fontSize}
+              setFontSize={setFontSize}
+              fontFamily={fontFamily}
+              setFontFamily={setFontFamily}
+              fontWeight={fontWeight}
+              setFontWeight={setFontWeight}
+              fontStyle={fontStyle}
+              setFontStyle={setFontStyle}
+              handleSubmit={handleSubmit}
+              isDark={isDark}
+              toggleColorScheme={toggleColorScheme}
+              fontList={fontList}
+              toTitleCase={toTitleCase}
+              withCustomFonts={withCustomFonts}
+              setWithCustomFonts={setWithCustomFonts}
+            />
+          </header>
           <Main
             fontsWithCat={fontsWithCat}
             text={text}

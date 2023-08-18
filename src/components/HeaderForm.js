@@ -36,8 +36,8 @@ export default function HeaderForm({
       gap={{ base: 'sm', md: 'lg' }}
       justify="center"
       align="center"
-      wrap="nowrap"
-      sx={{ paddingBottom: 30, textAlign: 'center' }}
+      wrap="wrap"
+      sx={{ paddingBottom: 30 }}
     >
       <TextInput
         w={{ base: 350, md: 250, xl: 400 }}
@@ -181,7 +181,7 @@ export default function HeaderForm({
         size="lg"
         radius="xl"
         variant="subtle"
-        mt={30}
+        mt={{ base: 0, md: 30 }}
         onClick={() => toggleColorScheme()}
         title="Toggle color scheme"
       >
