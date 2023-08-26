@@ -1,3 +1,5 @@
+# Introduction
+
 * Rapidly compare fonts using gigantic glyphs, making font evaluation and finalization a breeze, all wrapped in a modern and intuitive interface. 
 * Tailored for designers and enthusiasts, the app meticulously displays the nuances of each typeface, allowing for seamless comparison of styles, sizes, and intricacies. 
 * A smart and straightforward choice for anyone who loves typography.
