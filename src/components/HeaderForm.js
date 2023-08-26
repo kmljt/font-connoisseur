@@ -100,6 +100,11 @@ export default function HeaderForm({
           maxDropdownHeight={280}
           data={withCustomFonts}
           icon={<IconTypography size="1rem" />}
+          transitionProps={{
+            transition: 'skew-up',
+            duration: 80,
+            timingFunction: 'ease',
+          }}
           rightSection={
             <button
               type="submit"
@@ -167,7 +172,6 @@ export default function HeaderForm({
         radius="xl"
         size="sm"
         icon={<IconItalic size="1rem" />}
-        color="orange"
         transitionProps={{
           transition: 'skew-up',
           duration: 80,
